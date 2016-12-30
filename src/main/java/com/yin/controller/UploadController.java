@@ -1,4 +1,4 @@
-package com.springmvc.controller;
+package com.yin.controller;
 
 import java.io.File;
 import java.io.IOException;

@@ -24,6 +24,11 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${springVersion}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${springVersion}</version>
+		</dependency>
 		<!-- 文件上传所依赖的jar包 -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
