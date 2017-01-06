@@ -9,6 +9,7 @@ if [ ! -n "$1" ]
   		root_path=$1
 fi
 
+sh_path=$(cd `dirname $0`; pwd)"/"
 input_path=${root_path}"input/"
 output_path=${root_path}"output/"
 log_path=${root_path}"log/"
@@ -96,7 +97,7 @@ do
 		echo "开始把dex转jar:"${file}
 		echo "开始把dex转jar:"${file} >> $global_log_file
 		cp ${output_path}"${file}"_tmp/*.dex ${output_path}"${file}"_output/code/
-		dex2jar.sh ${output_path}"${file}"_output/code/*.dex >> $global_log_file
+		sh ${sh_path}"dex2jar.sh" ${output_path}"${file}"_output/code/*.dex >> $global_log_file
 		rm ${output_path}"${file}"_output/code/*.dex
 		echo "dex转jar完成:"${file}
 		echo "dex转jar完成:"${file} >> $global_log_file
@@ -104,7 +105,7 @@ do
 		echo "开始把jar转class:"${file}
 		echo "开始把jar转class:"${file} >> $global_log_file
 		cd ${output_path}"${file}"_output/code/
-		find *.jar -exec jar -xvf {} \; >> ${root_path}${global_log_file}
+		find *.jar -exec jar -xvf {} \; >> ${global_log_file}
 		rm *.jar
 		cd $root_path
 		echo "jar转dex完成:"${file}
