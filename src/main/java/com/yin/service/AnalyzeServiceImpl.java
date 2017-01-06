@@ -10,8 +10,11 @@ public class AnalyzeServiceImpl implements AnalyzeService {
 	public void analyze() {
 		String path = FileUtil.getResourcePath("sh/run.sh");
 		
-		System.out.println("sh "+path);
-		List<String> processList = ShellUtil.callShellWithReturn("sh "+path);
+		String apkPath = "/Users/yinjianhua/Desktop/hello/";
+		ShellUtil.callShell("chmod 777 "+path);
+		
+		System.out.println("sh "+path+" "+apkPath);
+		List<String> processList = ShellUtil.callShellWithReturn("sh "+path+" "+apkPath);
 		if (null != processList) {
 			for (String line : processList) {
 				System.out.println(line);
