@@ -7,10 +7,10 @@ import com.yin.utils.ShellUtil;
 
 public class AnalyzeServiceImpl implements AnalyzeService {
 
-	public void analyze() {
+	public void analyze(String apkPath) {
 		String path = FileUtil.getResourcePath("sh/run.sh");
 		
-		String apkPath = "/Users/yinjianhua/Desktop/hello/";
+//		String apkPath = "/Users/yinjianhua/Desktop/hello/";
 		ShellUtil.callShell("chmod 777 "+path);
 		
 		System.out.println("sh "+path+" "+apkPath);

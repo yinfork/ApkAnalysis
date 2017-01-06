@@ -2,6 +2,8 @@ package com.yin.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
@@ -10,9 +12,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.yin.service.AnalyzeService;
+import com.yin.service.AnalyzeServiceImpl;
+
 @Controller
 public class UploadController {
-	private final static String PATH = "//Users//yinjianhua//Desktop//hello";
+	private final static String FILE_PATH = "//Users//yinjianhua//Desktop//hello";
 	
 	// 定位到上传单个文件界面
 	@RequestMapping(value = "/upload", method = RequestMethod.GET)
@@ -31,9 +36,20 @@ public class UploadController {
 
 		if (!file.isEmpty()) {
 			try {
-				FileUtils.copyInputStreamToFile(file.getInputStream(), new File(PATH,
-						System.currentTimeMillis() + file.getOriginalFilename()));
+				Date now = new Date(); 
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmssSSS");// 精确到毫秒
+				String time = dateFormat.format(now); 
+				
+				File workPath = new File(FILE_PATH+"//"+time);
+				File inputPath = new File(FILE_PATH+"//"+time+"//input");
+				inputPath.mkdirs();
 
+				FileUtils.copyInputStreamToFile(file.getInputStream(), new File(inputPath,
+						file.getOriginalFilename()));
+				
+				AnalyzeService analyzeService;
+				analyzeService = new AnalyzeServiceImpl();
+				analyzeService.analyze(workPath.getPath()+"/");
 			} catch (IOException e) {
 				e.printStackTrace();
 				System.out.println(e.toString());

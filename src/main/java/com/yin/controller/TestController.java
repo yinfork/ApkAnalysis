@@ -17,8 +17,8 @@ public class TestController {
 	public String HelloWorld(Model model) {
 		model.addAttribute("message", "Hello Spring MVC!!!"); // 传参数给前端
 		
-		analyzeService = new AnalyzeServiceImpl();
-		analyzeService.analyze();
+//		analyzeService = new AnalyzeServiceImpl();
+//		analyzeService.analyze("");
 		return "test";
 	}
 }
