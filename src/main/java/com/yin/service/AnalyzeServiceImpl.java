@@ -7,7 +7,7 @@ import com.yin.utils.ShellUtil;
 
 public class AnalyzeServiceImpl implements AnalyzeService {
 
-	public void analyze(String apkPath) {
+	public List<String> analyze(String apkPath) {
 		String path = FileUtil.getResourcePath("sh/run.sh");
 		
 //		String apkPath = "/Users/yinjianhua/Desktop/hello/";
@@ -20,5 +20,6 @@ public class AnalyzeServiceImpl implements AnalyzeService {
 				System.out.println(line);
 			}
 		}
+		return processList;
 	}
 }
