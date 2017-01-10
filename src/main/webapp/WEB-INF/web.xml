@@ -4,6 +4,17 @@
 	version="3.1" metadata-complete="true">
 	<display-name>ApkAnalysis</display-name>
 
+
+	<!--设置log4j的配置文件位置 -->
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>/WEB-INF/classes/log4j.properties</param-value>
+	</context-param>
+	<!--使用监听加载log4j的配置文件 -->
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+
 	<!-- 前端控制器 -->
 	<servlet>
 		<servlet-name>spring-mvc</servlet-name>  <!-- 名称，真实的文件名需要在这个名字后面加上-servlet后缀 -->
@@ -21,5 +32,8 @@
 		<servlet-name>spring-mvc</servlet-name>     <!-- 这里的名字要和上面的servlet-name统一 -->
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+
+
+
 </web-app>
 
